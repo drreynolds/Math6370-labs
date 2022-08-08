@@ -5,9 +5,8 @@
 #SBATCH -e t1_err.%j        # error file
 #SBATCH -N 1                # total nodes requested
 #SBATCH -n 1                # total MPI tasks requested
-#SBATCH -p serial           # queue name
+#SBATCH -p normal           # queue name
 #SBATCH -t 00:02:00         # total time requested <hh:mm:ss>
 
 export OMP_NUM_THREADS=1
 ibrun ./driver.exe
-
