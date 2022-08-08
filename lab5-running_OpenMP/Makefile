@@ -8,7 +8,7 @@
 
 CXX = icc
 CFLAGS = -O2
-OMP = -openmp
+OMP = -qopenmp
 
 driver.exe : driver.cpp vectors.cpp Makefile
 	$(CXX) $(OMP) $(CFLAGS) driver.cpp vectors.cpp -o $@
