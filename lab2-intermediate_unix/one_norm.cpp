@@ -10,7 +10,7 @@ double one_norm(int n, double* u) {
 
   double sum=0.0;
   for (int i=0; i<n; i++)
-    sum += abs(u[i]);
+    sum += std::abs(u[i]);
 
   return sum;
 }
