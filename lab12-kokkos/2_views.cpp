@@ -101,17 +101,17 @@ int main( int argc, char* argv[] )
   Kokkos::initialize( argc, argv );
   {
 
+  // Allocate y, x vectors and Matrix A:
   // EXERCISE: Create views of the right size in GPU memory, while remaining accessible to the CPU
   //           (so-called "Unified Virtual Memory", UVM, or "managed memory")
-  // typedef Kokkos::View<double*, CudaUVMSpace>   ViewVectorType;
-  // typedef Kokkos::View<double**, CudaUVMSpace>  ViewMatrixType;
+  // typedef Kokkos::View<double*,  Kokkos::CudaUVMSpace>  ViewVectorType;
+  // typedef Kokkos::View<double**, Kokkos::CudaUVMSpace>  ViewMatrixType;
   // ViewVectorType y( "y", N );
   // ViewVectorType x( "x", M );
   // ViewMatrixType A( "A", N, M );
 
   // EXERCISE: This no longer needs allocation after views introduced...
   //   Hint: If arrays are not allocated, they also do not need to be deallocated below
-  // Allocate y, x vectors and Matrix A:
   double * const y = new double[ N ];
   double * const x = new double[ M ];
   double * const A = new double[ N * M ];
