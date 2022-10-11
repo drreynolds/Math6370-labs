@@ -44,6 +44,7 @@
 // Goals:
 // * learn how to #include Kokkos
 // * learn how to initialize and finalize Kokkos runtime environment
+// * learn how to allocate/free data with Kokkos
 // * learn how to use Kokkos::parallel_for
 // * learn how to use the Kokkos timer
 // * learn how to use Kokkos::parallel_reduce
@@ -108,27 +109,26 @@ int main( int argc, char* argv[] )
   // Kokkos::initialize( argc, argv );
   // {
 
-  // For the sake of simplicity in this exercise, we're using std::malloc directly, but
-  // later on we'll learn a better way, so generally don't do this in Kokkos programs.
   // Allocate y, x vectors and Matrix A:
-  auto y = static_cast<double*>(std::malloc(N * sizeof(double)));
-  auto x = static_cast<double*>(std::malloc(M * sizeof(double)));
-  auto A = static_cast<double*>(std::malloc(N * M * sizeof(double)));
+  // EXERCISE: Use Kokkos for data allocation in default memory space (replace std::malloc with Kokkos::kokkos_malloc)
+  double* y = static_cast<double*>(std::malloc(N * sizeof(double)));
+  double* x = static_cast<double*>(std::malloc(M * sizeof(double)));
+  double* A = static_cast<double*>(std::malloc(N * M * sizeof(double)));
 
   // Initialize y vector.
-  // EXERCISE: Convert outer loop to Kokkos::parallel_for.
+  // EXERCISE: Convert outer loop to Kokkos::parallel_for (be certain to use KOKKOS_LAMBDA instead of [=]).
   for ( int i = 0; i < N; ++i ) {
     y[ i ] = 1;
   }
 
   // Initialize x vector.
-  // EXERCISE: Convert outer loop to Kokkos::parallel_for.
+  // EXERCISE: Convert outer loop to Kokkos::parallel_for (be certain to use KOKKOS_LAMBDA instead of [=]).
   for ( int i = 0; i < M; ++i ) {
     x[ i ] = 1;
   }
 
   // Initialize A matrix, note 2D indexing computation.
-  // EXERCISE: Convert outer loop to Kokkos::parallel_for.
+  // EXERCISE: Convert outer loop to Kokkos::parallel_for (be certain to use KOKKOS_LAMBDA instead of [=]).
   for ( int j = 0; j < N; ++j ) {
     for ( int i = 0; i < M; ++i ) {
       A[ j * M + i ] = 1;
@@ -187,6 +187,7 @@ int main( int argc, char* argv[] )
   printf( "  N( %d ) M( %d ) nrepeat ( %d ) problem( %g MB ) time( %g s ) bandwidth( %g GB/s )\n",
           N, M, nrepeat, Gbytes * 1000, time, Gbytes * nrepeat / time );
 
+  // EXERCISE: free data from default memory space using Kokkos::kokkos_free
   std::free(A);
   std::free(y);
   std::free(x);
