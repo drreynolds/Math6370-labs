@@ -122,7 +122,7 @@ int main(int argc, char* argv[]) {
   if (myid == 0) {
     std::cout << " computed F = " << std::setprecision(16) << F_all << "\n";
     std::cout << "     true F = " << F_true << "\n";
-    std::cout << "      error = " << std::setprecision(5) << fabs(F_true-F_all) << "\n";
+    std::cout << "      error = " << std::setprecision(5) << std::abs(F_true-F_all) << "\n";
     std::cout << "    runtime = " << runtime << "\n";
   }
 

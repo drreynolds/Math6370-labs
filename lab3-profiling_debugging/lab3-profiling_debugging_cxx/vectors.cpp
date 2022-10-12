@@ -61,7 +61,7 @@ double vector_infnorm(int l, int m, int n, double ***x) {
   for (int k=0; k<n; k++)
     for (int j=0; j<m; j++)
       for (int i=0; i<l; i++)
-	norm = (abs(x[i][j][k]) > norm) ? abs(x[i][j][k]) : norm;
+	norm = (std::abs(x[i][j][k]) > norm) ? std::abs(x[i][j][k]) : norm;
   return norm;
 
 } // end vector_infnorm
