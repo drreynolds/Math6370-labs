@@ -6,9 +6,9 @@
 #  Math 4370 / 6370
 ###################################################################
 
-CXX = icc
+CXX = g++
 CFLAGS = -O2
-OMP = -qopenmp
+OMP = -fopenmp
 
 driver.exe : driver.cpp vectors.cpp Makefile
 	$(CXX) $(OMP) $(CFLAGS) driver.cpp vectors.cpp -o $@

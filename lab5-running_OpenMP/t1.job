@@ -1,12 +1,13 @@
 #!/bin/bash
-#SBATCH -A SMU-Math-6370    # account name
+#SBATCH -A reynolds_math6370_1252_001c_0001  # account name
 #SBATCH -J driver_omp_t1    # job name
 #SBATCH -o t1_out.%j        # output file
 #SBATCH -e t1_err.%j        # error file
 #SBATCH -N 1                # total nodes requested
 #SBATCH -n 1                # total MPI tasks requested
-#SBATCH -p normal           # queue name
+#SBATCH -p standard-s       # queue name
 #SBATCH -t 00:02:00         # total time requested <hh:mm:ss>
+#SBATCH --exclusive         # do not share the node with other users
 
 export OMP_NUM_THREADS=1
-ibrun ./driver.exe
+./driver.exe
